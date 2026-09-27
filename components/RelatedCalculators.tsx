@@ -1,7 +1,12 @@
 import Link from "next/link";
-import { CalculatorDefinition } from "@/lib/calculators/types";
 
-export function RelatedCalculators({ items }: { items: CalculatorDefinition[] }) {
+type RelatedCalculator = {
+  slug: string;
+  name: string;
+  shortDescription: string;
+};
+
+export function RelatedCalculators({ items }: { items: RelatedCalculator[] }) {
   if (items.length === 0) return null;
   return (
     <section aria-labelledby="related-heading" className="space-y-3">
