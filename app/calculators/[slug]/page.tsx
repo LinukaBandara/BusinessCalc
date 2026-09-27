@@ -54,7 +54,7 @@ export default function CalculatorPage({ params }: { params: { slug: string } })
       <p className="mt-2 max-w-prose text-ink-700">{active.shortDescription}</p>
 
       <div className="mt-8">
-        {def ? <CalculatorShell def={def} /> : <ListCalculatorShell def={listDef!} />}
+        {def ? <CalculatorShell slug={def.slug} /> : <ListCalculatorShell slug={listDef!.slug} />}
       </div>
 
       <AdSlotBelowCalculator />
