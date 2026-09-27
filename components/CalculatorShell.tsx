@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { CalculatorDefinition } from "@/lib/calculators/types";
+import { getCalculatorBySlug } from "@/lib/calculators/registry";
 import { formatValue } from "@/lib/format";
 import { trackEvent } from "@/lib/analytics";
 import { ResultActions } from "@/components/ResultActions";
@@ -12,7 +13,10 @@ function defaultInputs(def: CalculatorDefinition): Record<string, string> {
   return out;
 }
 
-export function CalculatorShell({ def }: { def: CalculatorDefinition }) {
+export function CalculatorShell({ slug }: { slug: string }) {
+  const def = getCalculatorBySlug(slug);
+  if (!def) return null;
+
   const [raw, setRaw] = useState<Record<string, string>>(() => defaultInputs(def));
   const hasTrackedOpen = useRef(false);
 
