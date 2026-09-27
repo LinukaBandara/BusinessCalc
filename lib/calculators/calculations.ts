@@ -18,7 +18,8 @@ function requireFinite(inputs: CalcInputs, keys: string[]): string | null {
 export function calculateProfitMargin(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["revenue", "cost"]);
   if (err) return { ok: false, error: err };
-  const { revenue, cost } = inputs;
+  const revenue = inputs.revenue!;
+  const cost = inputs.cost!;
 
   if (revenue <= 0) return { ok: false, error: "Revenue must be greater than 0." };
   if (cost < 0) return { ok: false, error: "Cost cannot be negative." };
