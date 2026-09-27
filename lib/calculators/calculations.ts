@@ -36,7 +36,7 @@ export function calculateProfitMargin(inputs: CalcInputs): CalcResult {
 export function calculateMarkup(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["cost", "price"]);
   if (err) return { ok: false, error: err };
-  const { cost, price } = inputs;
+  const { cost!, price! } = inputs;
 
   if (cost <= 0) return { ok: false, error: "Cost must be greater than 0." };
   if (price < 0) return { ok: false, error: "Price cannot be negative." };
@@ -54,7 +54,7 @@ export function calculateMarkup(inputs: CalcInputs): CalcResult {
 export function calculateRoi(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["investmentCost", "returnValue"]);
   if (err) return { ok: false, error: err };
-  const { investmentCost, returnValue } = inputs;
+  const { investmentCost!, returnValue! } = inputs;
 
   if (investmentCost <= 0) return { ok: false, error: "Investment cost must be greater than 0." };
   if (returnValue < 0) return { ok: false, error: "Return value cannot be negative." };
@@ -71,7 +71,7 @@ export function calculateRoi(inputs: CalcInputs): CalcResult {
 export function calculateBreakEven(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["fixedCosts", "pricePerUnit", "variableCostPerUnit"]);
   if (err) return { ok: false, error: err };
-  const { fixedCosts, pricePerUnit, variableCostPerUnit } = inputs;
+  const { fixedCosts!, pricePerUnit!, variableCostPerUnit! } = inputs;
 
   if (fixedCosts < 0) return { ok: false, error: "Fixed costs cannot be negative." };
   if (pricePerUnit <= 0) return { ok: false, error: "Price per unit must be greater than 0." };
@@ -97,7 +97,7 @@ export function calculateBreakEven(inputs: CalcInputs): CalcResult {
 export function calculateCagr(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["beginningValue", "endingValue", "years"]);
   if (err) return { ok: false, error: err };
-  const { beginningValue, endingValue, years } = inputs;
+  const { beginningValue!, endingValue!, years! } = inputs;
 
   if (beginningValue <= 0) return { ok: false, error: "Beginning value must be greater than 0." };
   if (endingValue < 0) return { ok: false, error: "Ending value cannot be negative." };
@@ -119,7 +119,7 @@ export function calculateCagr(inputs: CalcInputs): CalcResult {
 export function calculateConversionRate(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["visitors", "conversions"]);
   if (err) return { ok: false, error: err };
-  const { visitors, conversions } = inputs;
+  const { visitors!, conversions! } = inputs;
 
   if (visitors <= 0) return { ok: false, error: "Visitors must be greater than 0." };
   if (conversions < 0) return { ok: false, error: "Conversions cannot be negative." };
@@ -135,7 +135,7 @@ export function calculateConversionRate(inputs: CalcInputs): CalcResult {
 export function calculateCac(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["totalSpend", "newCustomers"]);
   if (err) return { ok: false, error: err };
-  const { totalSpend, newCustomers } = inputs;
+  const { totalSpend!, newCustomers! } = inputs;
 
   if (newCustomers <= 0) return { ok: false, error: "New customers must be greater than 0." };
   if (totalSpend < 0) return { ok: false, error: "Total spend cannot be negative." };
@@ -151,7 +151,7 @@ export function calculateCac(inputs: CalcInputs): CalcResult {
 export function calculateClv(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["avgPurchaseValue", "purchaseFrequency", "customerLifespanYears"]);
   if (err) return { ok: false, error: err };
-  const { avgPurchaseValue, purchaseFrequency, customerLifespanYears } = inputs;
+  const { avgPurchaseValue!, purchaseFrequency!, customerLifespanYears! } = inputs;
 
   if (avgPurchaseValue < 0) return { ok: false, error: "Average purchase value cannot be negative." };
   if (purchaseFrequency < 0) return { ok: false, error: "Purchase frequency cannot be negative." };
@@ -173,7 +173,7 @@ export function calculateFreelanceRate(inputs: CalcInputs): CalcResult {
     "weeksPerYear",
   ]);
   if (err) return { ok: false, error: err };
-  const { desiredAnnualIncome, annualExpenses, billableHoursPerWeek, weeksPerYear } = inputs;
+  const { desiredAnnualIncome!, annualExpenses!, billableHoursPerWeek!, weeksPerYear! } = inputs;
 
   if (desiredAnnualIncome < 0) return { ok: false, error: "Desired income cannot be negative." };
   if (annualExpenses < 0) return { ok: false, error: "Annual expenses cannot be negative." };
@@ -192,7 +192,7 @@ export function calculateFreelanceRate(inputs: CalcInputs): CalcResult {
 export function calculateHourlyToAnnual(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["hourlyWage", "hoursPerWeek", "weeksPerYear"]);
   if (err) return { ok: false, error: err };
-  const { hourlyWage, hoursPerWeek, weeksPerYear } = inputs;
+  const { hourlyWage!, hoursPerWeek!, weeksPerYear! } = inputs;
 
   if (hourlyWage < 0) return { ok: false, error: "Hourly wage cannot be negative." };
   if (hoursPerWeek <= 0) return { ok: false, error: "Hours per week must be greater than 0." };
@@ -210,7 +210,7 @@ export function calculateHourlyToAnnual(inputs: CalcInputs): CalcResult {
 export function calculateSalaryToHourly(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["annualSalary", "hoursPerWeek", "weeksPerYear"]);
   if (err) return { ok: false, error: err };
-  const { annualSalary, hoursPerWeek, weeksPerYear } = inputs;
+  const { annualSalary!, hoursPerWeek!, weeksPerYear! } = inputs;
 
   if (annualSalary < 0) return { ok: false, error: "Annual salary cannot be negative." };
   if (hoursPerWeek <= 0) return { ok: false, error: "Hours per week must be greater than 0." };
@@ -228,7 +228,7 @@ export function calculateSalaryToHourly(inputs: CalcInputs): CalcResult {
 export function calculatePercentageIncrease(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["oldValue", "newValue"]);
   if (err) return { ok: false, error: err };
-  const { oldValue, newValue } = inputs;
+  const { oldValue!, newValue! } = inputs;
 
   if (oldValue === 0) return { ok: false, error: "Old value cannot be 0 — percentage change is undefined." };
 
@@ -243,7 +243,7 @@ export function calculatePercentageIncrease(inputs: CalcInputs): CalcResult {
 export function calculatePercentageDecrease(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["oldValue", "newValue"]);
   if (err) return { ok: false, error: err };
-  const { oldValue, newValue } = inputs;
+  const { oldValue!, newValue! } = inputs;
 
   if (oldValue === 0) return { ok: false, error: "Old value cannot be 0 — percentage change is undefined." };
 
@@ -258,7 +258,7 @@ export function calculatePercentageDecrease(inputs: CalcInputs): CalcResult {
 export function calculateGrossProfit(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["revenue", "cogs"]);
   if (err) return { ok: false, error: err };
-  const { revenue, cogs } = inputs;
+  const { revenue!, cogs! } = inputs;
 
   if (revenue <= 0) return { ok: false, error: "Revenue must be greater than 0." };
   if (cogs < 0) return { ok: false, error: "Cost of goods sold cannot be negative." };
@@ -275,7 +275,7 @@ export function calculateGrossProfit(inputs: CalcInputs): CalcResult {
 export function calculateNetProfit(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["revenue", "totalExpenses"]);
   if (err) return { ok: false, error: err };
-  const { revenue, totalExpenses } = inputs;
+  const { revenue!, totalExpenses! } = inputs;
 
   if (revenue <= 0) return { ok: false, error: "Revenue must be greater than 0." };
   if (totalExpenses < 0) return { ok: false, error: "Total expenses cannot be negative." };
@@ -292,7 +292,7 @@ export function calculateNetProfit(inputs: CalcInputs): CalcResult {
 export function calculateRevenueGrowth(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["previousRevenue", "currentRevenue"]);
   if (err) return { ok: false, error: err };
-  const { previousRevenue, currentRevenue } = inputs;
+  const { previousRevenue!, currentRevenue! } = inputs;
 
   if (previousRevenue <= 0) return { ok: false, error: "Previous period revenue must be greater than 0." };
   if (currentRevenue < 0) return { ok: false, error: "Current period revenue cannot be negative." };
@@ -308,7 +308,7 @@ export function calculateRevenueGrowth(inputs: CalcInputs): CalcResult {
 export function calculateDiscount(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["originalPrice", "discountPercent"]);
   if (err) return { ok: false, error: err };
-  const { originalPrice, discountPercent } = inputs;
+  const { originalPrice!, discountPercent! } = inputs;
 
   if (originalPrice < 0) return { ok: false, error: "Original price cannot be negative." };
   if (discountPercent < 0) return { ok: false, error: "Discount percentage cannot be negative." };
@@ -326,7 +326,7 @@ export function calculateDiscount(inputs: CalcInputs): CalcResult {
 export function calculateCommission(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["saleAmount", "commissionRate"]);
   if (err) return { ok: false, error: err };
-  const { saleAmount, commissionRate } = inputs;
+  const { saleAmount!, commissionRate! } = inputs;
 
   if (saleAmount < 0) return { ok: false, error: "Sale amount cannot be negative." };
   if (commissionRate < 0) return { ok: false, error: "Commission rate cannot be negative." };
@@ -344,7 +344,7 @@ export function calculateCommission(inputs: CalcInputs): CalcResult {
 export function calculateRevenuePerCustomer(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["totalRevenue", "numberOfCustomers"]);
   if (err) return { ok: false, error: err };
-  const { totalRevenue, numberOfCustomers } = inputs;
+  const { totalRevenue!, numberOfCustomers! } = inputs;
 
   if (totalRevenue < 0) return { ok: false, error: "Total revenue cannot be negative." };
   if (numberOfCustomers <= 0) return { ok: false, error: "Number of customers must be greater than 0." };
@@ -360,7 +360,7 @@ export function calculateRevenuePerCustomer(inputs: CalcInputs): CalcResult {
 export function calculateOperatingMargin(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["revenue", "operatingIncome"]);
   if (err) return { ok: false, error: err };
-  const { revenue, operatingIncome } = inputs;
+  const { revenue!, operatingIncome! } = inputs;
 
   if (revenue <= 0) return { ok: false, error: "Revenue must be greater than 0." };
 
@@ -375,7 +375,7 @@ export function calculateOperatingMargin(inputs: CalcInputs): CalcResult {
 export function calculatePriceIncrease(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["currentPrice", "increasePercent"]);
   if (err) return { ok: false, error: err };
-  const { currentPrice, increasePercent } = inputs;
+  const { currentPrice!, increasePercent! } = inputs;
 
   if (currentPrice < 0) return { ok: false, error: "Current price cannot be negative." };
   if (increasePercent < 0) return { ok: false, error: "Increase percentage cannot be negative." };
@@ -397,7 +397,7 @@ export function calculateTargetProfit(inputs: CalcInputs): CalcResult {
     "variableCostPerUnit",
   ]);
   if (err) return { ok: false, error: err };
-  const { fixedCosts, targetProfit, pricePerUnit, variableCostPerUnit } = inputs;
+  const { fixedCosts!, targetProfit!, pricePerUnit!, variableCostPerUnit! } = inputs;
 
   if (fixedCosts < 0) return { ok: false, error: "Fixed costs cannot be negative." };
   if (targetProfit < 0) return { ok: false, error: "Target profit cannot be negative." };
@@ -424,7 +424,7 @@ export function calculateTargetProfit(inputs: CalcInputs): CalcResult {
 export function calculateCommissionSplit(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["totalCommission", "partyOneSplitPercent"]);
   if (err) return { ok: false, error: err };
-  const { totalCommission, partyOneSplitPercent } = inputs;
+  const { totalCommission!, partyOneSplitPercent! } = inputs;
 
   if (totalCommission < 0) return { ok: false, error: "Total commission cannot be negative." };
   if (partyOneSplitPercent < 0 || partyOneSplitPercent > 100) {
@@ -443,7 +443,7 @@ export function calculateCommissionSplit(inputs: CalcInputs): CalcResult {
 export function calculatePaybackPeriod(inputs: CalcInputs): CalcResult {
   const err = requireFinite(inputs, ["initialInvestment", "annualCashFlow"]);
   if (err) return { ok: false, error: err };
-  const { initialInvestment, annualCashFlow } = inputs;
+  const { initialInvestment!, annualCashFlow! } = inputs;
 
   if (initialInvestment < 0) return { ok: false, error: "Initial investment cannot be negative." };
   if (annualCashFlow <= 0) return { ok: false, error: "Annual cash flow must be greater than 0." };
