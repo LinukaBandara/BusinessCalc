@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { ListCalculatorDefinition } from "@/lib/calculators/listRegistry";
+import { ListCalculatorDefinition, getListCalculatorBySlug } from "@/lib/calculators/listRegistry";
 import { ListRow } from "@/lib/calculators/listCalculations";
 import { formatValue } from "@/lib/format";
 import { trackEvent } from "@/lib/analytics";
@@ -16,7 +16,10 @@ function toRawRows(rows: ListRow[]): RawRow[] {
   return rows.map((r) => ({ value: String(r.value), weight: String(r.weight) }));
 }
 
-export function ListCalculatorShell({ def }: { def: ListCalculatorDefinition }) {
+export function ListCalculatorShell({ slug }: { slug: string }) {
+  const def = getListCalculatorBySlug(slug);
+  if (!def) return null;
+
   const [rows, setRows] = useState<RawRow[]>(() => toRawRows(def.defaultRows));
   const hasTrackedOpen = useRef(false);
 
