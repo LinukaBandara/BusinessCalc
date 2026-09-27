@@ -1,4 +1,6 @@
 import { CalculatorDefinition } from "./types";
+
+export type { CalculatorDefinition } from "./types";
 import {
   calculateProfitMargin,
   calculateMarkup,
